@@ -47,7 +47,7 @@ void execstack(char* username, char hostname[]){
 	cstr = strtok(cstr, "#"); //seprate input string by "#"
 	vector<int> commands; //vector that save commands
 
-		
+	//if found concecutive & or | , move forward i step, and push 0 or 1 to vector	
 	for(unsigned int i = 0; i < input.size()-1; i++)
 	{
 		//when type "&&"
@@ -81,7 +81,7 @@ void execstack(char* username, char hostname[]){
         	else{
       		char* argv[2048];
        		clr_argv(argv);
-		argv[0] = cmd;
+		argv[0] = cmd; // put command in argv[0]
         	char* ctemp = strtok(NULL," ");
 
         	for(int i = 1; ctemp != NULL; i++){
@@ -91,6 +91,8 @@ void execstack(char* username, char hostname[]){
         	if(strcmp(cmd, "exit") == 0){
            		exit(0);
         	}
+        	
+        	//fork wait functions
 		int wchild;
 		int pid = fork();
 	
@@ -112,13 +114,13 @@ void execstack(char* username, char hostname[]){
 		}
         	if(commands.size() == 0)
             		return;
-		//next command is executed only if the first one succeeds
+		//if "&&", and former command is true， continue commands
        		if(commands.at(0) == 0){
             		if(wchild == 1){
                 		return;
            		}
         	}
-		//next command is executed only if the first one fail
+		//if "||" and former command is false， continue commands
         	else if (commands.at(0) == 1){
             		if (wchild == 0){
                 		return;
