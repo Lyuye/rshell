@@ -6,22 +6,26 @@ CS100 - Homework 1
 Writing a Basic Command Shell
 
 This shell is able to perform the following steps:
-
-Print a command prompt (e.g. $)
-
-Read in a command on one line. Commands will have the form:
-
+Commands will have the form:
+```
 cmd         = executable [ argumentList ] [ connector cmd ]
 connector   = || or && or ;
-
-$ ls -a; echo hello; mkdir test
-
-is equivalent to
-
+```
+where `executable` is an executable program in the `PATH` and `argumentList` is a list of zero or more arguments separated by spaces.
+The connector is an optional way you can run multiple commands at once.
+If a command is followed by `;`, then the next command is always executed;
+if a command is followed by `&&`, then the next command is executed only if the first one succeeds;
+if a command is followed by `||`, then the next command is executed only if the first one fails.
+For example:
+```
 $ ls -a
 $ echo hello
 $ mkdir test
-
+```
+is equivalent to:
+```
+$ ls -a; echo hello; mkdir test
+```
 To run this shell, follw this steps
 
 clone my repository
