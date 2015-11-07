@@ -1,0 +1,52 @@
+[lniu001@hammer cs100hw1]$ ls
+bceli001  Makefile  README.md  src  test
+[lniu001@hammer cs100hw1]$ make
+mkdir bin
+g++ -g -Wall -Werror -ansi -pedantic src/rshell.cpp -o bin/rshell
+[lniu001@hammer cs100hw1]$ bin/shell
+-bash: bin/shell: No such file or directory
+[lniu001@hammer cs100hw1]$ bin/rshell
+lniu001@hammer.cs.ucr.edu$ exit
+[lniu001@hammer cs100hw1]$ bin/rshell
+lniu001@hammer.cs.ucr.edu$ ls || exit
+bceli001  bin  Makefile  README.md  src  test
+lniu001@hammer.cs.ucr.edu$ ls && exit
+bceli001  bin  Makefile  README.md  src  test
+[lniu001@hammer cs100hw1]$ bin/rshell
+lniu001@hammer.cs.ucr.edu$ ls ; true && exit
+bceli001  bin  Makefile  README.md  src  test
+[lniu001@hammer cs100hw1]$ bin/rshell
+lniu001@hammer.cs.ucr.edu$ ls || echo a
+bceli001  bin  Makefile  README.md  src  test
+lniu001@hammer.cs.ucr.edu$ echo a && echo b ; echo c && false || echo d
+a
+b
+c
+d
+lniu001@hammer.cs.ucr.edu$ echo a ; false && echo b && echo c || echo d
+a
+b
+c
+lniu001@hammer.cs.ucr.edu$ echo a || echo b ; echo c
+a
+lniu001@hammer.cs.ucr.edu$ # comment
+lniu001@hammer.cs.ucr.edu$ # conmment ; echo a
+lniu001@hammer.cs.ucr.edu$ echo a # comment
+a
+lniu001@hammer.cs.ucr.edu$ echo a && echo b # ; echo d
+a
+b
+lniu001@hammer.cs.ucr.edu$ echo a && # exit
+a
+lniu001@hammer.cs.ucr.edu$ true || echo a
+lniu001@hammer.cs.ucr.edu$ false || echo a
+a
+lniu001@hammer.cs.ucr.edu$ false || false || false ; echo a
+a
+lniu001@hammer.cs.ucr.edu$ false || true ; echo a
+a
+lniu001@hammer.cs.ucr.edu$ false && true ; echo a
+a
+lniu001@hammer.cs.ucr.edu$ false || true && echo a ;exit
+a
+[lniu001@hammer cs100hw1]
