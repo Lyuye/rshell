@@ -2,44 +2,15 @@
 
 Lyuye Niu 861244218
 
-CS100 - Homework 1
-Writing a Basic Command Shell
+CS100 - Homework 2
+The Test Command and Precedence Operators
 
-This shell is able to perform the following steps:
-Commands will have the form:
-```
-cmd         = executable [ argumentList ] [ connector cmd ]
-connector   = || or && or ;
-```
-where `executable` is an executable program in the `PATH` and `argumentList` is a list of zero or more arguments separated by spaces.
-The connector is an optional way you can run multiple commands at once.
-If a command is followed by `;`, then the next command is always executed;
-if a command is followed by `&&`, then the next command is executed only if the first one succeeds;
-if a command is followed by `||`, then the next command is executed only if the first one fails.
-For example:
-```
-$ ls -a
-$ echo hello
-$ mkdir test
-```
-is equivalent to:
-```
-$ ls -a; echo hello; mkdir test
-```
-To run this shell, follw this steps
+Your subset of the test command should allow the user to run the command using the keyword "test"
+Additionally, you will implement parentheses ( ) as precedence operators in your rshell. The
+parentheses ( ) operators are used to change the precedence of the returns of commands,
+connectors, and chains of connectors.
 
-clone my repository
-$ cd rshell
-$ git checkout hw1
-$ make
-$ bin/shell
-
-
-The code has bugs as follow
-
-1. "echo a || echo b ; echo c" returns only "a"
-   "false || echo b ; echo c" returns "b /n c"
-   So "||" covered all of commands behind, except for using "false ||"
-2. "false && echo a" returns "a" instead of "Null"
- 
-
+Design:
+Use "stat()" to do "test". And use the S_ISDIR and S_ISREG to implement "-e" "-f" "-d".
+Now this code achieved run test "-e" "-f" "-d" with connectors "||" "&&" ";".
+In future I should think more hard to do precedence operators.
