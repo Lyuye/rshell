@@ -10,4 +10,4 @@ bin:
 	mkdir bin
 
 clean:
-	rm -rf bin
+ 	rm -rf bin
